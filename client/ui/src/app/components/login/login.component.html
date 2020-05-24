@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <p class="title">Log in</p>
+      <input type="text" placeholder="Username" autofocus
+      formControlName="username" 
+      class="form-control" 
+      [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">Username is required</div>
+    </div>
+      <i class="fa fa-user"></i>
+      <input type="password" placeholder="Password" 
+      formControlName="password" class="form-control" 
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+    </div>
+      <i class="fa fa-key"></i>
+      <a href="#">create new account</a>
+      <button [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        <span class="state">Log in</span>
+      </button>
+    </form>
+    <footer></footer>
+  </div>    
