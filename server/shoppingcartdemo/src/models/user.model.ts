@@ -50,7 +50,19 @@ export class User extends Entity {
   })
   creditcardnumber?: number;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  drugname: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  drugcompany: string;
+
+  
   constructor(data?: Partial<User>) {
     super(data);
   }

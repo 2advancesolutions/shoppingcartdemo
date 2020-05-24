@@ -10,6 +10,7 @@ import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
 import { BcryptHasher } from './util/bcrypt.password';
+import { MyUserService } from './services/user-service';
 
 export class ShoppingcartdemoApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
@@ -45,6 +46,7 @@ export class ShoppingcartdemoApplication extends BootMixin(
 
   setupBinding() {
    this.bind('util.hasher').toClass(BcryptHasher);
+   this.bind('services.user.service').toClass(MyUserService);
   }
 
 }
