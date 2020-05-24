@@ -28,7 +28,6 @@ export class LoginController {
   })
   async signUp(@requestBody() userData: User) {
     validateCredentials(_.pick(userData, ['email','password']));
-    // TODO encrypted password
     userData.password = await this.hasher.hashPassword(userData.password);
     const saveUser = await this.userRepository.create(userData);
     delete saveUser.password;
