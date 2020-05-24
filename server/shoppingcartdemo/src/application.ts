@@ -9,6 +9,7 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import { BcryptHasher } from './util/bcrypt.password';
 
 export class ShoppingcartdemoApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
@@ -16,6 +17,8 @@ export class ShoppingcartdemoApplication extends BootMixin(
   constructor(options: ApplicationConfig = {}) {
     super(options);
 
+    // Set Bindings
+    this.setupBinding();
     // Set up the custom sequence
     this.sequence(MySequence);
 
@@ -39,4 +42,9 @@ export class ShoppingcartdemoApplication extends BootMixin(
       },
     };
   }
+
+  setupBinding() {
+   this.bind('util.hasher').toClass(BcryptHasher);
+  }
+
 }
