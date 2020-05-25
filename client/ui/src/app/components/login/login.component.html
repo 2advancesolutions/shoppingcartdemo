@@ -16,8 +16,7 @@
         <div *ngIf="f.password.errors.required">Password is required</div>
     </div>
       <i class="fa fa-key"></i>
-      <a href="#">Create new account</a>
-      <br><br>
+      <!-- <a href="#">Create new account</a> -->
       <span style="color:red;">{{failedLoginText}}</span>
       <button [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
