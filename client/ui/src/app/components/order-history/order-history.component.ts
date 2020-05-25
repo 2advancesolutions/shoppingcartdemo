@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderHistoryService } from 'src/app/services/order-history.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order-history',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderHistoryComponent implements OnInit {
 
-  constructor() { }
+  orderHistory$: Observable<any>;
+
+  constructor(private orderHistoryService: OrderHistoryService) { }
 
   ngOnInit(): void {
+    this.orderHistory$ =  this.orderHistoryService.orderHistory$;
   }
 
 }

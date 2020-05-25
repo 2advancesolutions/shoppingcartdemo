@@ -5,5 +5,5 @@
         <p class="item-price">Code: {{product.drugcode}}</p>
         <p class="item-price">Stock: {{product.stocks}}</p>
         <p class="item-price"><span class="price">Price: {{product.price}}</span></p>
-        <button class="item-add">Add to Cart</button>
+        <button class="item-add" (click)="addOrder(product)">Add to Cart</button>
         
