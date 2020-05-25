@@ -46,9 +46,9 @@ export class User extends Entity {
   phonenumber: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  creditcardnumber?: number;
+  creditcardnumber: string;
 
   @property({
     type: 'string',

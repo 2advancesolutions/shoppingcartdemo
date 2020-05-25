@@ -1,2 +1,39 @@
 <app-navbar></app-navbar>
-<p>user-profile works!</p>
+<div class="wrapper">
+    <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <p class="title">Edit User Profile</p>
+      FirstName: <input type="text" placeholder="firstname"
+      formControlName="firstname" style="font-size: 16px;color: black;"
+      class="form-control" 
+      [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+      <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+        <div *ngIf="f.firstname.errors.required">firstname is required</div>
+    </div>
+      <i class="fa fa-user"></i>
+      LastName: <input type="text" placeholder="lastname"
+      formControlName="lastname" style="font-size: 16px;color: black;"
+      class="form-control" 
+      [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+      <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+        <div *ngIf="f.lastname.errors.required">lastname is required</div>
+    </div>
+      <i class="fa fa-user"></i>
+
+
+      LastName:<input type="password" placeholder="Password" 
+      formControlName="password" class="form-control" 
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+    </div>
+      <i class="fa fa-key"></i>
+      <a href="#">Create new account</a>
+      <br><br>
+      <span style="color:red;">{{failedLoginText}}</span>
+      <button [disabled]="loading" style="background-color: rgb(41, 62, 186);">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        <span class="state">Save</span>
+      </button>
+     
+    </form>
+  </div>    

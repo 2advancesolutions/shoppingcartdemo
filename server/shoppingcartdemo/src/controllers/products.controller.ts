@@ -21,7 +21,6 @@ import {
 import { ProductsRepository } from '../repositories/products.repository';
 import { Products } from '../models/products.model';
 
-
 export class ProductsController {
   constructor(
     @repository(ProductsRepository)

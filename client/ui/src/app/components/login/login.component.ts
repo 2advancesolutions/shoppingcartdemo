@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
           this.router.navigate(['/home']);
         },
         error => {
@@ -56,6 +55,5 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.failedLoginText = '';
     }, 3000);
-    // this.loginForm.reset();
   }
 }
