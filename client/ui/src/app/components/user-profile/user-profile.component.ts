@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,11 +18,12 @@ export class UserProfileComponent implements OnInit {
   failedLoginText: string;
   genders: any = ['Male', 'Female'];
   selectValue: any;
+  user: any;
+  saveObject: any;
 
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private authService: AuthService) { }
+              private userProfileService: UserProfileService,
+              private profileService: UserProfileService) { }
 
   ngOnInit(): void {
     this.editProfileForm = this.formBuilder.group({
@@ -35,8 +37,16 @@ export class UserProfileComponent implements OnInit {
       drugname: ['', Validators.required],
       drugcompany: ['', Validators.required]
     });
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(user);
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.setFormDefualtValues(this.user);
+    this.userProfileService.userProfile$.subscribe(user => {
+      if (user !== null) {
+        this.setFormDefualtValues(user);
+      }
+    });
+  }
+
+  private setFormDefualtValues(user: any) {
     this.editProfileForm.controls.firstname.setValue(user.firstname);
     this.editProfileForm.controls.lastname.setValue(user.lastname);
     this.editProfileForm.controls.email.setValue(user.email);
@@ -46,6 +56,7 @@ export class UserProfileComponent implements OnInit {
     this.editProfileForm.controls.creditcardnumber.setValue(user.creditcardnumber);
     this.editProfileForm.controls.drugname.setValue(user.drugname);
     this.editProfileForm.controls.drugcompany.setValue(user.drugcompany);
+
     // dropdown option
     this.selectValue = this.editProfileForm.controls.gender.value;
   }
@@ -59,13 +70,25 @@ export class UserProfileComponent implements OnInit {
     if (this.editProfileForm.invalid) {
       return;
     }
-
     this.loading = true;
-    this.authService.login(this.f.username.value, this.f.password.value)
+    const formData = this.editProfileForm.value;
+    this.saveObject = {
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      email: formData.email,
+      password: formData.password ? formData.password : this.user.password,
+      gender: formData.gender,
+      phonenumber: formData.phonenumber,
+      creditcardnumber: formData.creditcardnumber,
+      drugname: formData.drugname,
+      drugcompany: formData.drugcompany
+    };
+
+    this.profileService.updateUserProfile(this.user.id, this.saveObject)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/home']);
+          this.userProfileService.updateUserProfileCache(this.saveObject);
         },
         error => {
           this.loading = false;
