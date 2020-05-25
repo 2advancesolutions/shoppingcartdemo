@@ -21,10 +21,16 @@ import {
 import {User} from '../models';
 import {UserRepository} from '../repositories';
 
+import { validateCredentials, Credentials } from '../util/validator';
+import { BcryptHasher } from '../util/bcrypt.password';
+import * as _ from 'lodash';
+import { inject } from '@loopback/core';
+
 export class UserController {
   constructor(
     @repository(UserRepository)
     public userRepository : UserRepository,
+    @inject('util.hasher') public hasher: BcryptHasher,
   ) {}
 
   @post('/users', {
@@ -159,6 +165,8 @@ export class UserController {
     @param.path.number('id') id: number,
     @requestBody() user: User,
   ): Promise<void> {
+    validateCredentials(_.pick(user, ['email', 'password']));
+    user.password = await this.hasher.hashPassword(user.password);
     await this.userRepository.replaceById(id, user);
   }
 

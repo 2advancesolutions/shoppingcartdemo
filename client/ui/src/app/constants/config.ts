@@ -2,7 +2,8 @@ export const APPCONFIG = {
     API: {
         DEV: {
             LOGIN: 'http://localhost:3000/user/login',
-            PRODUCTS: 'http://localhost:3000/products'
+            PRODUCTS: 'http://localhost:3000/products',
+            UPDATEUSER: 'http://localhost:3000/users/'
         }
     }
 };

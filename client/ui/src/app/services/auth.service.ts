@@ -16,7 +16,8 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<any>(APPCONFIG.API.DEV.LOGIN, { email, password })
-      .pipe(map(data => {
+      .pipe(
+        map(data => {
         // login successful if there's a jwt token in the response
         if (data && data.user && data.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  loginForm: FormGroup;
+  editProfileForm: FormGroup;
   loading = false;
   submitted = false;
   failedLoginText: string;
@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+    this.editProfileForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.required],
@@ -37,26 +37,26 @@ export class UserProfileComponent implements OnInit {
     });
     const user = JSON.parse(localStorage.getItem('currentUser'));
     console.log(user);
-    this.loginForm.controls.firstname.setValue(user.firstname);
-    this.loginForm.controls.lastname.setValue(user.lastname);
-    this.loginForm.controls.email.setValue(user.email);
-    this.loginForm.controls.password.setValue(user.password);
-    this.loginForm.controls.gender.setValue(user.gender);
-    this.loginForm.controls.phonenumber.setValue(user.phonenumber);
-    this.loginForm.controls.creditcardnumber.setValue(user.creditcardnumber);
-    this.loginForm.controls.drugname.setValue(user.drugname);
-    this.loginForm.controls.drugcompany.setValue(user.drugcompany);
+    this.editProfileForm.controls.firstname.setValue(user.firstname);
+    this.editProfileForm.controls.lastname.setValue(user.lastname);
+    this.editProfileForm.controls.email.setValue(user.email);
+    this.editProfileForm.controls.password.setValue(user.password);
+    this.editProfileForm.controls.gender.setValue(user.gender);
+    this.editProfileForm.controls.phonenumber.setValue(user.phonenumber);
+    this.editProfileForm.controls.creditcardnumber.setValue(user.creditcardnumber);
+    this.editProfileForm.controls.drugname.setValue(user.drugname);
+    this.editProfileForm.controls.drugcompany.setValue(user.drugcompany);
     // dropdown option
-    this.selectValue = this.loginForm.controls.gender.value;
+    this.selectValue = this.editProfileForm.controls.gender.value;
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() { return this.editProfileForm.controls; }
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.loginForm.invalid) {
+    if (this.editProfileForm.invalid) {
       return;
     }
 
