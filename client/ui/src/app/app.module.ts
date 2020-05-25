@@ -7,13 +7,19 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    NavbarComponent,
+    OrderHistoryComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

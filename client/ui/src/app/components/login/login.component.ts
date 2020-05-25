@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
+  failedLoginText: string;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -32,20 +33,29 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-        return;
+      return;
     }
 
     this.loading = true;
     this.authService.login(this.f.username.value, this.f.password.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-              console.log(data);
-              this.router.navigate(['/home']);
-            },
-            error => {
-               //  this.alertService.error(error);
-                this.loading = false;
-            });
-}
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['/home']);
+        },
+        error => {
+          //  this.alertService.error(error);
+          this.clearForm();
+          this.loading = false;
+        });
+  }
+
+  clearForm() {
+    this.failedLoginText = 'Login Failed Please Try Aagain';
+    setTimeout(() => {
+      this.failedLoginText = '';
+    }, 3000);
+    // this.loginForm.reset();
+  }
 }

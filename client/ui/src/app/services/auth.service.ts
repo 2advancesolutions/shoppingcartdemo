@@ -4,8 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APPCONFIG } from '../constants/config';
 
-
-
 @Injectable({
   providedIn: 'root'
 })

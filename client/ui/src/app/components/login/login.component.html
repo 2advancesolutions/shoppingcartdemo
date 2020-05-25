@@ -16,11 +16,14 @@
         <div *ngIf="f.password.errors.required">Password is required</div>
     </div>
       <i class="fa fa-key"></i>
-      <a href="#">create new account</a>
+      <a href="#">Create new account</a>
+      <br><br>
+      <span style="color:red;">{{failedLoginText}}</span>
       <button [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         <span class="state">Log in</span>
       </button>
+     
     </form>
     <footer></footer>
   </div>    
