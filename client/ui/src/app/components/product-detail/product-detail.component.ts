@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Observable, of } from 'rxjs';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -9,10 +9,12 @@ import { Observable, of } from 'rxjs';
 })
 export class ProductDetailComponent implements OnInit {
   $currentUser: Observable<any>;
+  $products: Observable<any>;
 
-  constructor(private authService: AuthService) { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
     this.$currentUser = of(JSON.parse(localStorage.getItem('currentUser')));
+    this.$products = this.productService.loadProducts();
   }
 }

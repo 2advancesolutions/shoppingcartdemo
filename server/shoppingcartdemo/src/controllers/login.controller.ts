@@ -57,6 +57,7 @@ export class LoginController {
        // make sure user exist, password should be valid
        const user = await this.userService.verifyCredentials(credentials);
        console.log(user);
+       delete user.password;
       // const userProfile = this.userService.convertToUserProfile(user);
        return Promise.resolve({token: '47289374928734asdads', user: user});
   }

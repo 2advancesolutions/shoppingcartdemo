@@ -8,7 +8,7 @@ export const CredentialsSchema = {
       },
       password: {
         type: 'string',
-        minLength: 8,
+        minLength: 2,
       },
     },
   };
