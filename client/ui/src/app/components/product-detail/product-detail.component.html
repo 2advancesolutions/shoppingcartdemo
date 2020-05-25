@@ -4,16 +4,6 @@
 Company Name: {{user.drugcompany}} &nbsp; Drug Name: {{user.drugname}} 
 </section>
 <br><br>
-<ul class="l-items" *ngIf="($products | async) as products">
-    <li class="item" *ngFor="let product of products;">
-        <button class="item-add">Add to Cart</button>
-        <img src="{{product.img}}" alt="">
-        <p class="item-description">{{product.drugcode}}</p>
-       Code: <h4 class="item-name">{{product.drugcode}}</h4>
-        Stock: <h4 class="item-name">{{product.stocks}}</h4>
-        Price: <h5 class="item-price">$<span class="price">{{product.price}}</span></h5>
-    </li>
-  
-</ul>
+<app-product style="padding-top: 20px;" [$products]="$products"></app-product>
 
 

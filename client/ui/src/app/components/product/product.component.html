@@ -1,0 +1,9 @@
+<ul class="l-items" *ngIf="($products | async) as products">
+    <li class="item" *ngFor="let product of products;">
+        <img src="{{product.img}}" alt="">
+        <p class="item-description">Code: {{product.drugcode}}</p>
+        <p class="item-price">Code: {{product.drugcode}}</p>
+        <p class="item-price">Stock: {{product.stocks}}</p>
+        <p class="item-price"><span class="price">Price: {{product.price}}</span></p>
+        <button class="item-add">Add to Cart</button>
+        
