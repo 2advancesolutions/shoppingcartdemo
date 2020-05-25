@@ -12,6 +12,7 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductComponent } from './components/product/product.component';
 import { PhonemaskDirective } from './directives/phonemask.directive';
+import { SpinnerComponent } from './share-componets/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PhonemaskDirective } from './directives/phonemask.directive';
     OrderHistoryComponent,
     UserProfileComponent,
     ProductComponent,
-    PhonemaskDirective
+    PhonemaskDirective,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

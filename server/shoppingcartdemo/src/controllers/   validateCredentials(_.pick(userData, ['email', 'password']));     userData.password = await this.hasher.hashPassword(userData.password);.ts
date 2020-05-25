@@ -151,6 +151,7 @@ export class UserController {
     })
     user: User,
   ): Promise<void> {
+    validateCredentials(_.pick(user, ['email', 'password']));
     user.password = await this.hasher.hashPassword(user.password);
     await this.userRepository.updateById(id, user);
   }

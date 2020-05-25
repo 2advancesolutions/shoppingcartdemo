@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <div class="wrapper">
+  <app-spinner *ngIf="loading"></app-spinner>
     <form class="login" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
       <p class="title">Edit User Profile</p>
      

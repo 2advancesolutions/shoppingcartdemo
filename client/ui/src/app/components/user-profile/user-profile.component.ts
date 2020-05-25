@@ -76,7 +76,7 @@ export class UserProfileComponent implements OnInit {
       firstname: formData.firstname,
       lastname: formData.lastname,
       email: formData.email,
-      password: formData.password ? formData.password : this.user.password,
+      password: formData.password,
       gender: formData.gender,
       phonenumber: formData.phonenumber,
       creditcardnumber: formData.creditcardnumber,
@@ -89,6 +89,9 @@ export class UserProfileComponent implements OnInit {
       .subscribe(
         data => {
           this.userProfileService.updateUserProfileCache(this.saveObject);
+          alert('Updated Successfully');
+          localStorage.setItem('currentUser', JSON.stringify(this.saveObject));
+          this.loading = false;
         },
         error => {
           this.loading = false;
