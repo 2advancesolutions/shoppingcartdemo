@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductComponent } from './components/product/product.component';
+import { PhonemaskDirective } from './directives/phonemask.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductComponent } from './components/product/product.component';
     NavbarComponent,
     OrderHistoryComponent,
     UserProfileComponent,
-    ProductComponent
+    ProductComponent,
+    PhonemaskDirective
   ],
   imports: [
     BrowserModule,

@@ -11,14 +11,11 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductDetailComponent implements OnInit {
   $currentUser: Observable<any>;
   $products: Observable<any>;
-  loader: boolean;
 
   constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
-    this.loader = true;
     this.$currentUser = of(JSON.parse(localStorage.getItem('currentUser')));
     this.$products = this.productService.loadProducts();
-    this.loader = false;
   }
 }

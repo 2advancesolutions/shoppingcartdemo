@@ -1,15 +1,10 @@
-$primary: #ffffff;
+$primary: #2196F3;
 
 body {
   font-family: "Open Sans", sans-serif;
   height: 100vh;
   background: url("../../../assets/20170329-shopping-1-large.png") 50% fixed !important;
   background-size: cover;
-}
-
-.inputText {
-    font-size: 16px !important;
-    color: black !important;;
 }
 
 @keyframes spinner {
@@ -29,7 +24,7 @@ body {
   width: 100%;
   min-height: 100%;
   padding: 20px;
-  background: rgba(darken(#ffffff,80%), 0.85);
+  background: rgba(darken($primary,40%), 0.85);
 }
 
 
